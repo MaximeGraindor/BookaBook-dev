@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f7efaf9-59f5-4fc0-a1c8-fa07ad9ca884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Book.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/BookFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_15_144908_create_books_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/BookSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_15_144908_create_books_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_15_144908_create_books_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/BookSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/BookSeeder.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2020_10_15_144908_create_books_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+            <state relative-caret-position="483">
+              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -78,10 +72,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/seeders/BookSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="1533">
+              <caret line="243" selection-start-line="243" selection-end-line="243" />
               <folding>
                 <element signature="e#36#56#0#PHP" expanded="true" />
+                <element signature="e#303#778#1#PHP" />
+                <element signature="e#749#1195#1#PHP" />
+                <element signature="e#1219#1664#1#PHP" />
+                <element signature="e#1684#2126#1#PHP" />
+                <element signature="e#2156#2603#1#PHP" />
+                <element signature="e#2613#3054#1#PHP" />
+                <element signature="e#3313#3775#1#PHP" />
+                <element signature="e#3878#4354#1#PHP" />
+                <element signature="e#4453#4940#1#PHP" />
+                <element signature="e#4997#5474#1#PHP" />
+                <element signature="e#5463#5882#1#PHP" />
+                <element signature="e#5970#6396#1#PHP" />
+                <element signature="e#6469#6905#1#PHP" />
+                <element signature="e#6983#7427#1#PHP" />
+                <element signature="e#7529#7991#1#PHP" />
+                <element signature="e#8086#8566#1#PHP" />
               </folding>
             </state>
           </provider>
@@ -256,9 +266,9 @@
       <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="235" />
-    <option name="y" value="193" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="118" />
+    <option name="y" value="223" />
     <option name="width" value="3459" />
     <option name="height" value="1803" />
   </component>
@@ -412,20 +422,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602756200482</updated>
-      <workItem from="1602756202230" duration="8990000" />
+      <workItem from="1602756202230" duration="13581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8990000" />
+    <option name="totallyTimeSpent" value="13581000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="157" y="129" width="2306" height="1202" extended-state="0" />
+    <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27955556" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24970226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -521,17 +531,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_10_15_144908_create_books_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        <state relative-caret-position="483">
+          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeders/BookSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="1533">
+          <caret line="243" selection-start-line="243" selection-end-line="243" />
           <folding>
             <element signature="e#36#56#0#PHP" expanded="true" />
+            <element signature="e#303#778#1#PHP" />
+            <element signature="e#749#1195#1#PHP" />
+            <element signature="e#1219#1664#1#PHP" />
+            <element signature="e#1684#2126#1#PHP" />
+            <element signature="e#2156#2603#1#PHP" />
+            <element signature="e#2613#3054#1#PHP" />
+            <element signature="e#3313#3775#1#PHP" />
+            <element signature="e#3878#4354#1#PHP" />
+            <element signature="e#4453#4940#1#PHP" />
+            <element signature="e#4997#5474#1#PHP" />
+            <element signature="e#5463#5882#1#PHP" />
+            <element signature="e#5970#6396#1#PHP" />
+            <element signature="e#6469#6905#1#PHP" />
+            <element signature="e#6983#7427#1#PHP" />
+            <element signature="e#7529#7991#1#PHP" />
+            <element signature="e#8086#8566#1#PHP" />
           </folding>
         </state>
       </provider>

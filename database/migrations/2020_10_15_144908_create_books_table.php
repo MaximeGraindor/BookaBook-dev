@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->string('offered_price');
             $table->text('editing_details');
             $table->string('cover_path');
+            $table->boolean('required');
             $table->timestamps();
         });
     }
