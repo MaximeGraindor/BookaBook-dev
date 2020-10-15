@@ -7,7 +7,11 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {}
+    extend: {
+      color: {
+        'mainBackground' : '#F5F6FA'
+      }
+    }
   },
   variants: {},
   plugins: []
