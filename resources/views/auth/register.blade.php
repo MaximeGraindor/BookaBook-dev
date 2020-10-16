@@ -8,7 +8,7 @@
             </p>
         </div>
         <section class="bg-white p-10 rounded">
-            <h1>
+            <h1 class="text-4xl">
                 S'inscire
             </h1>
             <form method="POST" action="{{ route('register') }}">
