@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
 
-    <body class="bg-indigo-200">
+    <body class="bg-background">
     @yield('content')
 
     <script src="./js/app.js" defer></script>
