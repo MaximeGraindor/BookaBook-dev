@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::insert([
-            'name'=> 'user',
+            'name'=> 'student',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Book;
+use App\Models\Order;
+use App\Policies\BookPolicy;
+use App\Policies\OrderPolicy;
+use Database\Seeders\BookSeeder;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Book::class => BookPolicy::class,
+        Order::class => OrderPolicy::class
     ];
 
     /**
@@ -25,6 +32,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('modify-book', function($user){
+            return $user->isAdmin;
+        });
+
+        Gate::define('add-book', function($user){
+            return $user->isAdmin;
+        });
+
+
+        Gate::define('manage-order', function($user){
+            return $user->isStudent;
+        });
+
+        /*Gate::define('', function($user){
+            return $user->isAdmin;
+        });*/
     }
 }

@@ -17,8 +17,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::insert([
-            'name' => 'Maxime Graindor',
+            'firstname' => 'Maxime',
+            'name' => 'Graindor',
             'email' => 'maxime.graindor@hotmail.com',
+            'group' => '2384',
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('testDev'),
             'remember_token' => '',
@@ -26,14 +28,6 @@ class UserSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
-        User::insert([
-            'name' => 'User Testing',
-            'email' => 'user.testing@hotmail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('testDev'),
-            'remember_token' => '',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ]);
+        User::factory()->count(100)->create();
     }
 }

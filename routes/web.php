@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'index']);
+
+Route::get('/panier', [UserController::class, 'index']);
+Route::get('/commande', [OrderController::class, 'index']);
+
+Route::get('/book/create', [BookController::class, 'index']);
+
+
+Route::get('/compte', [UserController::class, 'show']);
