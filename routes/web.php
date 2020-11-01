@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,8 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/panier', [UserController::class, 'index']);
 Route::get('/commande', [OrderController::class, 'index']);
 
-Route::get('/book/create', [BookController::class, 'index']);
+Route::get('/book/create', [BookController::class, 'create'])->middleware('auth', 'can:create, App\Models\Book');
 
 
-Route::get('/compte', [UserController::class, 'show']);
+Route::get('/compte', [UserController::class, 'index']);
+Route::get('/compte/{user}/edit', [UserController::class, 'edit']);

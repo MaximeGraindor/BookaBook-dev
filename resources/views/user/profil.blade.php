@@ -12,4 +12,6 @@
         <li>{{ $user->email }}</li>
         <li>{{ $user->group }}</li>
     </ul>
+
+    <a href="/compte/{{ $user->id }}/edit">Modifier</a>
 @endsection
