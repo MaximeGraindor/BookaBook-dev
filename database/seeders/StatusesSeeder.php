@@ -16,19 +16,31 @@ class StatusesSeeder extends Seeder
     public function run()
     {
         statuses::insert([
-            'name' => 'En attente',
+            'name' => 'brouillon',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         statuses::insert([
-            'name' => 'Confirmé',
+            'name' => 'en attente',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         statuses::insert([
-            'name' => 'Archivé',
+            'name' => 'payé',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        statuses::insert([
+            'name' => 'validé',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        statuses::insert([
+            'name' => 'archivé',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

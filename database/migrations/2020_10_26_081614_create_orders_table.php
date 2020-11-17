@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('academic-year_id');
+            $table->foreignId('academic_year_id');
             $table->timestamps();
         });
     }

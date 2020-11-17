@@ -80,6 +80,6 @@ class BookOrderController extends Controller
      */
     public function destroy(BookOrder $bookOrder)
     {
-        //
+        return $bookOrder;
     }
 }

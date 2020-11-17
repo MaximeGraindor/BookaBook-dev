@@ -21,13 +21,18 @@ class DatabaseSeeder extends Seeder
 
             AuthorSeeder::class,
             BookSeeder::class,
-            BookAuthorSeeder::class,
+            AuthorBookSeeder::class,
             PublisherSeeder::class,
 
             AcademicYearSeeder::class,
             OrderSeeder::class,
             BookOrderSeeder::class,
-            StatusesSeeder::class
+
+            OrderSeeder::class,
+            OrderStatusSeeder::class,
+            StatusesSeeder::class,
+
+            SaleSeeder::class
         ]);
 
     }

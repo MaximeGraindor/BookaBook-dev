@@ -18,12 +18,14 @@ module.exports = {
       xl: "1280px"
     },
     colors: {
-      transparent: "transparent",
-      current: "currentColor",
-      black: "#000",
-      white: "#fff",
-      background : "#F5F6FA",
-      input : "#E6E6E6",
+        blueDarkCustom: '#2E5BFF',
+        blueLightCustom: '#D5DEFF',
+        transparent: "transparent",
+        current: "currentColor",
+        black: "#000",
+        white: "#fff",
+        background : "#F4F6FC",
+        input : "#E6E6E6",
       gray: {
         "100": "#f7fafc",
         "200": "#edf2f7",
@@ -224,13 +226,13 @@ module.exports = {
       "not-allowed": "not-allowed"
     },
     fill: {
-      current: "currentColor"
+        current: "currentColor"
     },
     flex: {
-      "1": "1 1 0%",
-      auto: "1 1 auto",
-      initial: "0 1 auto",
-      none: "none"
+        "1": "1 1 0%",
+        auto: "1 1 auto",
+        initial: "0 1 auto",
+        none: "none"
     },
     flexGrow: {
       "0": "0",
@@ -241,21 +243,22 @@ module.exports = {
       default: "1"
     },
     fontFamily: {
-      sans: [
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "\"Segoe UI\"",
-        "Roboto",
-        "\"Helvetica Neue\"",
-        "Arial",
-        "\"Noto Sans\"",
-        "sans-serif",
-        "\"Apple Color Emoji\"",
-        "\"Segoe UI Emoji\"",
-        "\"Segoe UI Symbol\"",
-        "\"Noto Color Emoji\""
-      ],
+        custom: ["roboto", 'sans-serif'],
+        sans: [
+            "system-ui",
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "\"Segoe UI\"",
+            "Roboto",
+            "\"Helvetica Neue\"",
+            "Arial",
+            "\"Noto Sans\"",
+            "sans-serif",
+            "\"Apple Color Emoji\"",
+            "\"Segoe UI Emoji\"",
+            "\"Segoe UI Symbol\"",
+            "\"Noto Color Emoji\""
+        ],
       serif: [
         "Georgia",
         "Cambria",

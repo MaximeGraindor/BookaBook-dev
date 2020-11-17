@@ -1,12 +1,10 @@
 @extends('layouts.main')
-
-
-
 @section('content')
+
     <x-header></x-header>
     <main class="container mx-auto">
         <h1 class="text-4xl mb-6">
-            Ajouter un livre
+            Modifier {{$book->name}}
         </h1>
 
         <form action="/book" method="post" class="grid grid-cols-2 gap-5">
@@ -47,10 +45,9 @@
             </div>
 
             <div>
-                <input type="submit" value="Ajouter" class="px-4 py-3 border-2 border-black">
+                <input type="submit" value="Modifier" class="px-4 py-3 border-2 border-black">
             </div>
         </form>
 
     </main>
-
 @endsection

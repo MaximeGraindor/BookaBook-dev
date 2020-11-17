@@ -17,7 +17,7 @@ class CreateBookOrdersTable extends Migration
             $table->id();
             $table->foreignId('book_id')->constrained();
             $table->foreignId('order_id')->constrained();
-            $table->integer('quantity');
+            $table->integer('quantity')->default('1');
             $table->timestamps();
         });
     }

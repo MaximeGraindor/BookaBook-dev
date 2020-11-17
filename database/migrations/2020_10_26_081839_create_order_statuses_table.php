@@ -15,6 +15,8 @@ class CreateOrderStatusesTable extends Migration
     {
         Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->timestamps();
         });
     }

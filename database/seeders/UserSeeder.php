@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'name' => 'Graindor',
             'email' => 'maxime.graindor@hotmail.com',
             'group' => '2384',
+            'picture_path' => 'profilePicture.png',
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('testDev'),
             'remember_token' => '',

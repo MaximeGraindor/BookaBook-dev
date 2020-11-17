@@ -1,15 +1,18 @@
-<header class="container mx-auto bg-white rounded px-8 py-4 mb-16 shadow-lg flex justify-between text-xl">
+<header class="container mx-auto bg-white rounded-lg px-8 py-6 mb-16 shadow-lg flex justify-between text-xl">
     <div class="flex">
-        <a href="{{ url('/') }}" class="w-1/4 mr-8 flex items-center"><img src="{{ asset('storage/assets/logo-BookaBook.png') }}" alt="" class="border-r-2 border-black pr-8"></a>
+        {{-- <a href="{{ url('/') }}" class="w-1/4 mr-8 flex items-center"><img src="{{ asset('storage/assets/logo-BookaBook.png') }}" alt="" class="border-r-2 border-black pr-8"></a> --}}
+        <a href="{{ url('/') }}" class="mr-8 flex items-center border-r-2  pr-8 ">Book a Book</a>
         @auth
         <nav class="flex items-center">
-            <a href="/" class="mr-6">Livres</a>
             @can('manage-order')
-                <a href="/panier" class="mr-6">Panier</a>
-                <a href="/commande" class="mr-6">Commande</a>
+                <a href="/order" class="mr-8 {{Request::path() === 'order' ? ' border-b-2 border-blueLightCustom' : ''}}">Commande</a>
             @endcan
             @can('add-book')
-                <a href="/book/create">Ajouter un livre
+                <a href="/book/create" class="mr-8 {{Request::path() === 'book/create' ? ' border-b-2 border-blueLightCustom' : ''}}">Ajouter un livre</a>
+            @endcan
+            @can('manage-student')
+                <a href="/books" class="mr-8 {{Request::path() === 'books' ? ' border-b-2 border-blueLightCustom' : ''}}">Livres</a>
+                <a href="/students" class="mr-8 {{Request::path() === 'students' ? ' border-b-2 border-blueLightCustom' : ''}}">Étudiants</a>
             @endcan
         </nav>
         @endauth
@@ -22,10 +25,10 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto flex">
                 <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item">
+                    <li class="nav-item mr-6">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
@@ -34,9 +37,10 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="/compte" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="flex items-center">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle mr-10 flex items-center" href="/account" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->firstname }}&nbsp;{{ Auth::user()->name }}
+                            <img src="{{ asset('/storage/profilePicture/'.Auth::user()->picture_path) }}" alt="" class="rounded-full h-10 w-10 flex items-center justify-center ml-4 object-cover">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -20,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Book::class => BookPolicy::class,
-        Order::class => OrderPolicy::class
+        Order::class => OrderPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -32,14 +33,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('modify-book', function($user){
+        Gate::define('manage-book', function($user){
             return $user->isAdmin;
         });
 
-        Gate::define('add-book', function($user){
+        Gate::define('manage-student', function($user){
             return $user->isAdmin;
         });
-
 
         Gate::define('manage-order', function($user){
             return $user->isStudent;

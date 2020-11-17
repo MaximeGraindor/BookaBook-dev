@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
 
-    <body class="bg-background p-12 font-sans">
+    <body class="bg-background p-12 font-custom">
         @yield('content')
 
     <script src="./js/app.js" defer></script>

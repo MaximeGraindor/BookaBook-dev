@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('book.index', compact('books'));
     }
 
     /**
@@ -46,7 +47,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $randomBooks = Book::all()->shuffle()->take(rand(4, 4));
+        $book->load('authors', 'publishers', 'sales');
+        return view('book.show', compact('book', 'randomBooks'));
     }
 
     /**
@@ -57,7 +60,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit', compact('book'));
     }
 
     /**
@@ -80,6 +83,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect('/');
     }
 }

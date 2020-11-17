@@ -9,13 +9,25 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $table = 'books';
+
     public function authors()
     {
         return $this->belongsToMany(Author::class);
     }
 
+    public function publishers()
+    {
+        return $this->belongsTo(Publisher::class);
+    }
+
     public function orders()
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 }

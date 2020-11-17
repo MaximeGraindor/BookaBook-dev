@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BookOrderController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -17,13 +18,32 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/panier', [UserController::class, 'index']);
-Route::get('/commande', [OrderController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::get('/students', [UserController::class, 'index']);
+
+
+
+// ORDER
+Route::get('/order', [OrderController::class, 'index']);
+Route::post('/order/validatedOrder', [OrderController::class, 'validatedOrder']);
+Route::post('/order/changeStatus', [OrderController::class, 'changeStatus']);
+Route::delete('/order/{order}', [BookOrderController::class, 'destroy']);
+Route::post('/order/add', [OrderController::class, 'store'])->name('addOrder');
+Route::get('/order/{order}', [OrderController::class, 'show']);
+
+
+
+// BOOK
+Route::get('/books', [BookController::class, 'index']);
 Route::get('/book/create', [BookController::class, 'create'])->middleware('auth', 'can:create, App\Models\Book');
+Route::get('/book/{book}', [BookController::class, 'show']);
+Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('deleteBook');
+Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('editBook');
 
 
-Route::get('/compte', [UserController::class, 'index']);
-Route::get('/compte/{user}/edit', [UserController::class, 'edit']);
+// ACCOUNT
+Route::get('/account', [UserController::class, 'show']);
+Route::patch('/account/{user}', [UserController::class, 'update']);
+Route::get('/account/{user}/edit', [UserController::class, 'edit']);

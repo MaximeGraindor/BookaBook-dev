@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookOrder;
+use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Statuses;
+use App\Models\BookOrder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,9 +19,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('books')->where('user_id', '=', Auth::user()->id)->get();
-        //return $orders;
-        return view('user.order', compact('orders'));
+        $draftOrderBooks = [];
+        $waitingOrders = [];
+        $draftOrder = Auth::user()->orders()->draft()->first();
+
+        if($draftOrder){
+            $draftOrderId = $draftOrder->id;
+            $draftOrderBooks = $draftOrder->books()->get();
+            $waitingOrders = Auth::user()->orders()->waiting()->get();
+        }else{
+            $draftOrderId = $draftOrder;
+        }
+
+        return view('order.index', compact('draftOrderBooks', 'draftOrderId', 'waitingOrders'));
 
     }
 
@@ -41,7 +53,33 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $draftOrderId = Statuses::where('name', 'brouillon')->first()->id;
+
+        $presentOrder = Auth::user()->orders()->draft()->first();
+
+        if($presentOrder){
+            $presentOrder->books()->attach($request->bookId,[
+                'quantity' => 1
+            ]);
+
+            return redirect('/order');
+
+        }else{
+
+            $order = Order::create([
+                'user_id' => Auth::user()->id,
+                'academic_year_id' => '1'
+            ]);
+
+            $order->books()->attach($request->bookId,[
+                'quantity' => 1
+            ]);
+            $order->status()->attach($draftOrderId);
+
+            return redirect('/order/');
+        }
+
+
     }
 
     /**
@@ -52,7 +90,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('order.order', compact('order'));
     }
 
     /**
@@ -75,7 +113,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        return redirect('/order');
     }
 
     /**
@@ -86,6 +124,40 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        return $order;
+        $order->delete();
+        return redirect('/order');
+    }
+
+    /**
+     * Valide the specified order
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function validatedOrder(Request $request, Order $order)
+    {
+        $draftOrderId = Statuses::where('name', 'brouillon')->first()->id;
+        $waitingOrderId = Statuses::where('name', 'en attente')->first()->id;
+
+        $tmp = Order::where('id', $request->draftOrderId)->first();
+        $tmp->status()->detach($draftOrderId);
+        $tmp->status()->attach($waitingOrderId);
+        return redirect('/order');
+    }
+
+    /**
+     * Update status
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus(Request $request, Order $order)
+    {
+        $curentOrder = Order::where('id', $request->orderId)->first();
+        //return $request;
+        $curentOrder->status()->detach($request->statusOrderId);
+        $curentOrder->status()->attach($request->status);
+        return redirect('/students');
     }
 }

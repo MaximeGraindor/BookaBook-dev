@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Statuses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
-        return view('user.profil', compact('user'));
+        $users = User::with('orders.books.sales', 'orders.status')->paginate(10);
+        $statusList = Statuses::where('name', '!=', 'Brouillon')->get();
+        //return $users;
+        return view('admin.listStudent', compact('users', 'statusList'));
     }
 
     /**
@@ -49,7 +51,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user = Auth::user();
 
+        return view('user.profil', compact('user'));
     }
 
     /**
@@ -72,7 +76,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        //return $request;
+        $user->update(
+            ['firstname'=>$request->firstname,
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'group'=>$request->group,
+            'picture_path' => "profilePicture.png"]
+        );
+
+        return redirect('/account');
     }
 
     /**
