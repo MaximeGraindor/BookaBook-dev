@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
 
 class BookController extends Controller
 {
@@ -25,7 +27,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book.create');
+        $authors = Author::all();
+        return view('book.create', compact('authors'));
     }
 
     /**
@@ -34,9 +37,13 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        //
+        return 'test';
+        $validatedData = $request->validated();
+        $book = Book::create($validatedData);
+
+        return redirect('/books');
     }
 
     /**

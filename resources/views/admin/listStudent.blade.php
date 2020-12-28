@@ -26,6 +26,9 @@
                 <th class="px-6 py-3 bg-gray-50 text-left text-lg font-bold">
                     Groupe
                 </th>
+                <th class="px-6 py-3 bg-gray-50 text-left text-lg font-bold">
+                    Mise a jour
+                </th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -34,6 +37,7 @@
                     <td class="px-6 py-4 text-left font-bold">{{ $user->firstname }}</td>
                     <td class="px-6 py-4 text-left font-bold">{{ $user->name }}</td>
                     <td class="px-6 py-4 text-left font-bold">{{ $user->group }}</td>
+                    <td class="px-6 py-4 text-left font-bold">{{ $user->updated_at }}</td>
                 </tr>
                 @foreach ($user->orders as $i=>$order)
                 <tr class="{{ $key%2 ? 'bg-green-200' : 'bg-blue-200'  }}">
@@ -66,67 +70,6 @@
             </tbody>
             </table>
         </div>
-        <div class="mt-6">
-            {{$users->links()}}
-        </div>
-
-        <div class="mb-12 flex justify-between items-center">
-            <h1 class="text-4xl">
-                Liste des étudiants
-            </h1>
-            <form action="" method="get">
-                <label for="name"  class="sr-only">Recherche</label>
-                <input type="search" name="name" id="name" class="px-4 py-3">
-            </form>
-        </div>
-
-        <div>
-            @foreach ($users as $user)
-            <div class="mb-10">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-blueLightCustom">
-                        <tr>
-                        <th class="px-6 py-5 bg-gray-50 text-left text-lg font-bold">
-                            {{ $user->firstname }}
-                        </th>
-                        <th class="px-6 py-3 bg-gray-50 text-left text-lg font-bold">
-                            {{ $user->name }}
-                        </th>
-                        <th class="px-6 py-3 bg-gray-50 text-left text-lg font-bold">
-                            {{ $user->group }}
-                        </th>
-                        </tr>
-                    </thead>
-                </table>
-
-                @if ($user->orders)
-                <table class="min-w-full divide-y divide-gray-200">
-                    <tbody>
-                        @foreach ($user->orders as $order)
-                            <tr class="flex justify-between p-5 bg-teal-300">
-                                <td class="px-6 py-5 bg-gray-50 text-left text-lg font-bold">
-                                    {{ $order->id }}
-                                </td>
-                                <td class="px-6 py-5 bg-gray-50 text-left text-lg font-bold">
-                                    {{ $order->updated_at }}
-                                </td>
-                                <td class="px-6 py-5 bg-gray-50 text-left text-lg font-bold">
-                                    {{ $order->status[0]->name }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                @else
-                    <p>
-                        Il n'y a pas de commande pour l'instant
-                    </p>
-                @endif
-
-            </div>
-            @endforeach
-        </div>
-
         <div class="mt-6">
             {{$users->links()}}
         </div>

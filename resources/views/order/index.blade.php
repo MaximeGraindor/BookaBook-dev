@@ -10,11 +10,16 @@
         </h1>
 
         <section>
-            <h2 class="text-3xl mb-6">
-                Panier
-            </h2>
-            @if ($draftOrderBooks)
-                @foreach($draftOrderBooks as $book)
+            <div class="flex justify-between mb-6">
+                <h2 class="text-3xl">
+                    Panier
+                </h2>
+                <p class="text-xl">
+                    {{$totalOrder}}€
+                </p>
+            </div>
+            @if ($draftOrder)
+                @foreach($draftOrder->books as $book)
                     <div class="bg-blueLightCustom p-6 mt-10 flex gap-5">
                         <div class="w-1/12">
                         <img src="{{ asset('storage/books/'.$book->cover_path) }}" alt="" class="w-full">
@@ -26,7 +31,7 @@
                                     {{ $book->name }}
                                     </span>
                                     <span class="text-3xl font-bold">
-                                        {{ $book->student_price }}€
+                                        {{ $book->sales[0]->student_price }}€
                                     </span>
                                 </div>
                                 <p class="text-xl">
@@ -41,11 +46,11 @@
                                 {{ $book->pivot->quantity }}
                             </p>
                             </div>
-                            <form action="/book/{{ $book->id }}" method="post" class="text-right">
+                            <form action="/bookOrder/{{ $book->pivot->id }}" method="post" class="text-right">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" value="Supprimer" class="px-3 py-2 bg-white rounded">
-                                <input type="hidden" value="{{$book->id}}">
+                                {{-- <input type="hidden" name="bookId" value="{{$book->id}}"> --}}
                             </form>
                         </div>
                     </div>
@@ -64,7 +69,7 @@
 
         </section>
 
-        <div class="bg-blue-200 p-6 mt-10">
+        <div class="bg-blue-400 p-6 mt-10">
             <h2 class="text-3xl font-bold mb-6">
                 Commande en cours
             </h2>
@@ -74,9 +79,9 @@
                         <div class="w-full flex flex-col justify-between">
                             <div class="">
                                 <div class="flex justify-between">
-                                    <span class="text-3xl font-bold">
-                                    {{ $waitingOrder->id }}
-                                    </span>
+                                    <a href="/order/{{ $waitingOrder->id }}" class="text-2xl font-bold hover:underline">
+                                        commande n°{{ $waitingOrder->id }} du {{ ($waitingOrder->created_at)->format('d/m/Y/h h:i') }}
+                                    </a>
                                 </div>
                                 <p class="text-xl">
                                 {{ $waitingOrder->ISBN }}

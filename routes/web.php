@@ -29,7 +29,9 @@ Route::get('/students', [UserController::class, 'index']);
 Route::get('/order', [OrderController::class, 'index']);
 Route::post('/order/validatedOrder', [OrderController::class, 'validatedOrder']);
 Route::post('/order/changeStatus', [OrderController::class, 'changeStatus']);
-Route::delete('/order/{order}', [BookOrderController::class, 'destroy']);
+
+Route::delete('/bookOrder/{BookOrder}', [BookOrderController::class, 'destroy']);
+
 Route::post('/order/add', [OrderController::class, 'store'])->name('addOrder');
 Route::get('/order/{order}', [OrderController::class, 'show']);
 
@@ -37,7 +39,8 @@ Route::get('/order/{order}', [OrderController::class, 'show']);
 
 // BOOK
 Route::get('/books', [BookController::class, 'index']);
-Route::get('/book/create', [BookController::class, 'create'])->middleware('auth', 'can:create, App\Models\Book');
+Route::post('/books', [BookController::class, 'store'])->name('books.store');
+Route::get('/book/create', [BookController::class, 'create']);
 Route::get('/book/{book}', [BookController::class, 'show']);
 Route::delete('/book/{book}', [BookController::class, 'destroy'])->name('deleteBook');
 Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('editBook');

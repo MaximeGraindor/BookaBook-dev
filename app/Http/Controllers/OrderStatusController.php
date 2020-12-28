@@ -69,7 +69,7 @@ class OrderStatusController extends Controller
      */
     public function update(Request $request, OrderStatus $orderStatus)
     {
-        //
+
     }
 
     /**

@@ -19,19 +19,33 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $draftOrderBooks = [];
+
+        $academicYearId = 1;
+
+        $draftOrder = [];
         $waitingOrders = [];
+        $totalOrder = 0;
         $draftOrder = Auth::user()->orders()->draft()->first();
+        $waitingOrders = Auth::user()->orders()->waiting()->get();
+
 
         if($draftOrder){
             $draftOrderId = $draftOrder->id;
-            $draftOrderBooks = $draftOrder->books()->get();
-            $waitingOrders = Auth::user()->orders()->waiting()->get();
+            $draftOrder->load(['books.sales' => function($q) use ($academicYearId){
+
+                $q->where('academic_year_id', $academicYearId);
+            }]);
+
+            foreach ($draftOrder->books as $book){
+                $totalOrder += $book->sales[0]->student_price;
+            };
+
         }else{
             $draftOrderId = $draftOrder;
+
         }
 
-        return view('order.index', compact('draftOrderBooks', 'draftOrderId', 'waitingOrders'));
+        return view('order.index', compact('draftOrder','draftOrderId', 'waitingOrders', 'totalOrder'));
 
     }
 
@@ -90,7 +104,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('order.order', compact('order'));
+        $order->load('status');
+        return view('order.show', compact('order'));
     }
 
     /**
