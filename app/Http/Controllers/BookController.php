@@ -37,11 +37,26 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookRequest $request)
+    public function store(Request $request)
     {
-        return 'test';
-        $validatedData = $request->validated();
-        $book = Book::create($validatedData);
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'ISBN' => 'required',
+            'editing_details' => 'required',
+            'cover_path' => 'required',
+            'required' => 'boolean',
+            'author' => 'required',
+            'publisher' => 'required',
+            /* 'public_price' => 'required|integer',
+            'student_price' => 'required|integer' */
+        ]);
+
+        //return $validated;
+
+        $book = Book::create($validated);
+
+
 
         return redirect('/books');
     }
@@ -79,7 +94,17 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'ISBN' => '',
+            'book' => '',
+            'book' => '',
+            'book' => '',
+        ]);
+
+        return $request;
+        return $book;
     }
 
     /**

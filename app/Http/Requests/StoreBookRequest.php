@@ -24,11 +24,11 @@ class StoreBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'cover' => 'required',
+            'cover_path' => 'required',
             'name' => 'required',
             'author' => 'required',
             'publisher' => 'required',
-            'isbn' => 'required|integer',
+            'ISBN' => 'required|integer',
             'public_price' => 'required|integer',
             'student_price' => 'required|integer'
         ];

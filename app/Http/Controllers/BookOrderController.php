@@ -80,6 +80,15 @@ class BookOrderController extends Controller
      */
     public function destroy(BookOrder $bookOrder)
     {
+        return 'test';
+        return $bookOrder;
+        $bookOrder->delete;
+        return redirect('/order');
+    }
+
+    public function removeBook(BookOrder $bookOrder, Request $request)
+    {
+        return $request;
         return $bookOrder;
         $bookOrder->delete;
         return redirect('/order');

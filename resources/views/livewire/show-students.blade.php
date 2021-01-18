@@ -14,64 +14,43 @@
         </form>
     </div>
 
-    <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-blueLightCustom">
-            <tr>
-            <th class="px-6 py-5 text-lg font-bold text-left bg-gray-50">
-                Prénom
-            </th>
-            <th class="px-6 py-3 text-lg font-bold text-left bg-gray-50">
-                Nom
-            </th>
-            <th class="px-6 py-3 text-lg font-bold text-left bg-gray-50">
-                Groupe
-            </th>
-            <th class="px-6 py-3 text-lg font-bold text-left bg-gray-50">
-                Mise a jour
-            </th>
-            </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($users as $key=>$user)
-            <tr class="{{ $key%2 ? 'bg-green-200' : 'bg-blue-200'  }}">
-                <td class="px-6 py-4 font-bold text-left">{{ $user->firstname }}</td>
-                <td class="px-6 py-4 font-bold text-left">{{ $user->name }}</td>
-                <td class="px-6 py-4 font-bold text-left">{{ $user->group }}</td>
-                <td class="px-6 py-4 font-bold text-left">{{ $user->updated_at }}</td>
-            </tr>
-            @foreach ($user->orders as $i=>$order)
-            <tr class="{{ $key%2 ? 'bg-green-200' : 'bg-blue-200'  }}">
-                <td class="px-6 py-5 bg-gray-50">
-                    {{ $order->id }}
-                </td>
-                <td class="px-6 py-5 bg-gray-50">
-                    {{ $order->updated_at }}
-                </td>
-                <td class="px-6 py-5 bg-gray-50">
-                    {{ $order->status[0]->name }}
-                </td>
-                <td class="px-6 py-5 bg-gray-50">
-                    <form action="/order/changeStatus" method="post">
-                        @csrf
-                        <select name="status" id="status" class="px-3 py-2 border-2 border-red-700">
-                            @foreach ($statusList as $status)
-                                <option value="{{ $status->id }}">{{ $status->name }}</option>
-                            @endforeach
-                        </select>
-                        <input type="hidden" name="statusOrderId" value="{{ $order->status[0]->id }}">
-                        <input type="hidden" name="orderId" value="{{ $order->id}}">
-                        <input type="submit" value="Modifier" class="px-3 py-2">
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-            @endforeach
 
-        </tbody>
-        </table>
-    </div>
-    <div class="mt-6">
-        {{$users->links()}}
-    </div>
+
+<div class="grid grid-cols-2 gap-5">
+    @foreach($users as $key => $user)
+        <div>
+            <div class="flex flex-row justify-between p-5 bg-blueLightCustom">
+                <p>
+                    {{ $user->name }} - {{ $user->firstname }}
+                </p>
+                <p>
+                    {{ $user->group }}
+                </p>
+            </div>
+            <div class="p-5 bg-white">
+                @foreach($user->orders as $i => $order)
+                    <a href="/order/{{ $order->id }}" class="">
+                    	<div class="flex flex-row items-center justify-between p-2 border-b-2 hover:bg-blue-200">
+                    	    <span>{{ $order->status[0]->name }}</span> <span>{{ ($order->updated_at)->format('d M - G:m') }}</span>
+                    	    <form action="/order/changeStatus" method="post">
+                    	        @csrf
+                    	        <select name="status" id="status" class="px-3 py-2 border-2 border-red-700">
+                    	            @foreach ($statusList as $status)
+                    	                <option value="{{ $status->id }}">{{ $status->name }}</option>
+                    	            @endforeach
+                    	        </select>
+                    	        <input type="hidden" name="statusOrderId" value="{{ $order->status[0]->id }}">
+                    	        <input type="hidden" name="orderId" value="{{ $order->id}}">
+                    	        <input type="submit" value="Modifier" class="px-3 py-2">
+                    	    </form>
+                    	</div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
+</div>
+
+<div class="mt-6">
+    {{$users->links()}}
 </div>
